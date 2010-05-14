@@ -1,0 +1,10 @@
+Changes
+MANIFEST
+Makefile.PL
+README
+bin/gen_random_words.pl
+bin/random_word_guess.pl
+lib/Random/Word.pm
+t/00-load.t
+t/pod-coverage.t
+t/pod.t
