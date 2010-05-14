@@ -18,6 +18,7 @@ use Getopt::Long;
 use IO::File;
 # local module
 use Random::Word;
+use lib q(../lib);
 
 # begin
     my $input_file;
@@ -57,18 +58,9 @@ use Random::Word;
     for ( my $x = 1; $x == $num_of_words; $x++ ) {
         # grab a random word object out of the word_objs array
         my $random_word = $word_objs[int(rand(scalar(@word_objs)))];
-        print qq(Guess the word based on the definition....\n);
-        print $random_word->get_definition() . q(: );
+        # FIXME slice the word object out of the array so it can't be reused
         # use the diamond operator to read in user input
-        my $answer = <>;
-        chomp($answer);
-        if ( $answer eq $random_word->get_word() ) {
-            print qq(Correct! $answer = ) . $random_word->get_definition() 
-                . qq(\n);
-        } else {
-            print qq(Incorrect! ) . $random_word->get_word() . q( = ) 
-                . $random_word->get_definition() . qq(\n);
-        } # if ( $answer eq $word )
+        print q(random word: ) . $random_word->get_word() . qq(\n);
     } # for ( my $x = 1; $x == $num_of_words; $x++ )
 
 # fin!
