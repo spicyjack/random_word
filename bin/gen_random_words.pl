@@ -5,20 +5,26 @@
 # read a text file full of words and their definitions, separated by a comma,
 # then choose a random number of words based on the user's input
 
-# notes:
+# UTF-8 notes:
 # http://ahinea.com/en/tech/perl-unicode-struggle.html
 
-package main;
-
+# TODO
+# - add a way to read in groups of words from a file; given:
+# noun1, noun2, noun3, noun4
+# verb1, verb2, verb3, verb4
+# adjective1, adjective2, adjective3, adjective4
+# the script could pick out one or two words per group so random sentences can
+# be written with them
 use strict;
 use warnings;
 # system modules
 use Encode;
 use Getopt::Long;
 use IO::File;
-# local module
+# local modules
+# include the path in the source archive just in case
+use lib qw( ../lib );
 use Random::Word;
-use lib q(../lib);
 
 # begin
     my $input_file;
@@ -39,6 +45,8 @@ use lib q(../lib);
     } else {
         die qq(ERROR: please define an input file with --inputfile);
     } # if ( length($parsed{input}) > 0 )
+
+    # slurp up all of the lines from the filehandle
     my @lines=<$INFD>;
     my $counter = 0;
 
